@@ -1,0 +1,34 @@
+﻿<Window x:Class="FirstGameWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Carrom game" Height="900" Width="999" ResizeMode="CanMinimize"  KeyDown="Window_KeyDown">
+    <Canvas HorizontalAlignment="Left" Name="CanvasBoard" Height="0" Margin="0,0,0,0" VerticalAlignment="Top" Width="0" MouseLeftButtonDown="CanvasBoard_OnMouseLeftButtonDown">
+        <Rectangle Fill="#17202A" HorizontalAlignment="Left" Height="550" Stroke="Black" VerticalAlignment="Top" Width="550" MaxWidth="550" MaxHeight="550" Canvas.Left="10" Canvas.Top="12"/>
+        <Rectangle Fill="#F5B041" Name="CarromBoard" HorizontalAlignment="Left" Height="500" Stroke="Black" VerticalAlignment="Top" Width="500" Canvas.Left="35" Canvas.Top="39" />
+        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="35" Canvas.Top="39"/>
+        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" RenderTransformOrigin="1.897,0.938" Canvas.Left="35" Canvas.Top="507"/>
+        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="39"/>
+        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="507"/>
+        <Ellipse HorizontalAlignment="Left" Stroke="Black" Fill="#F5B041" StrokeThickness="10" VerticalAlignment="Top" Width="150" Height="150" Canvas.Left="210" Canvas.Top="212"/>
+        <Rectangle Fill="#F5B041" Name="LeftSideBar" HorizontalAlignment="Left" Height="375" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="68" Canvas.Top="103"/>
+        <Rectangle Fill="#F5B041" Name="RightSideBar" HorizontalAlignment="Left" Height="375" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="482" Canvas.Top="103"/>
+
+        <Rectangle Fill="#F5B041" Name="TopBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="373" Canvas.Left="100" Canvas.Top="64"/>
+        <Rectangle Fill="#F5B041" Name="BottomBar"  HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="373" Canvas.Left="104" Canvas.Top="489"/>
+
+        <Ellipse Fill="Red" Name="TopRedCircleOnLeftBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="68" Canvas.Top="92"/>
+        <Ellipse Fill="Red" Name="BottomRedCircleOnLeftBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="68" Canvas.Top="461"/>
+
+        <Ellipse Fill="Red" Name="TopRedCircleOnRightBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.043,0.643" Canvas.Left="482" Canvas.Top="92"/>
+        <Ellipse Fill="Red" Name="BottomRedCircleOnRightBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.043,0.643" Canvas.Left="482" Canvas.Top="461"/>
+
+
+        <Ellipse Fill="Red" Name="Queen" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="20" Canvas.Left="274" Canvas.Top="275"/>
+
+        <Ellipse Fill="Red" x:Name="RightRedCircleOnTopBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.043,0.643" Canvas.Left="465" Canvas.Top="64"/>
+        <Ellipse Fill="Red" x:Name="LeftRedCircleOnTopBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" RenderTransformOrigin="0.043,0.643" Canvas.Left="88" Canvas.Top="64"/>
+        <Ellipse Fill="Red" x:Name="LeftRedCircleOnBottomBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" RenderTransformOrigin="4.043,-2.393" Canvas.Left="88" Canvas.Top="489"/>
+        <Ellipse Fill="Red" x:Name="RightRedCircleOnBottomBar" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="465" Canvas.Top="489"/>
+    </Canvas>
+
+</Window>
