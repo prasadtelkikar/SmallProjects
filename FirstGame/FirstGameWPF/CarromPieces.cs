@@ -24,10 +24,9 @@ namespace FirstGameWPF
         {
             Ellipse striker = new Ellipse();
             striker.Height = 30;
-            striker.Height = 30;
             striker.Width = 30;
 
-            striker.Margin = new Thickness(61, 290, 0, 0);
+            striker.Margin = new Thickness(200, 490, 0, 0);
 
             SolidColorBrush blueBrush = new SolidColorBrush();
             blueBrush.Color = Colors.CadetBlue;

@@ -61,6 +61,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CarromHelper.cs" />
     <Compile Include="CarromPieces.cs" />
     <Compile Include="ExtraControls.cs" />
     <Compile Include="MainWindow.xaml.cs">
