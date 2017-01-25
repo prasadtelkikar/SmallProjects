@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,13 +24,11 @@ namespace FirstGameWPF
     public partial class MainWindow : Window
         {
 
-        static double striker_x = 0;
-        static double striker_y = 0;
         private Line redLine = null;
         private Ellipse strikerWithDefaultLocation = null;
-        private Point lastPoint, nextPoint;
+        private Point lastPoint,  startPoint;
         private EllipseGeometry myEllipseGeometry;
-        private Label speedIndicator;
+        private BackgroundWorker bw;
         public MainWindow ()
             {
             InitializeComponent();
@@ -43,7 +42,14 @@ namespace FirstGameWPF
             myEllipseGeometry.RadiusX = 14;
             myEllipseGeometry.RadiusY = 14;
             this.RegisterName("MyEllipseGeometry", myEllipseGeometry);
+            bw = new BackgroundWorker();
+            bw.WorkerReportsProgress = true;
+            bw.DoWork += bw_DoWork;
+            bw.ProgressChanged += bw_ProgressChanged;
+            bw.RunWorkerCompleted += bw_RunWorkerCompleted;
             }
+
+
 
 
         private void CanvasBoard_OnMouseLeftButtonDown (object sender, MouseButtonEventArgs e)
@@ -51,9 +57,6 @@ namespace FirstGameWPF
             Point p = Mouse.GetPosition(CanvasBoard);
             double x = p.X;
             double y = p.Y;
-            //Ellipse piece = CarromPieces.CreatePiece(x, y, Colors.Red, Colors.Black);
-            //CanvasBoard.Children.Add(piece);
-           
             }
 
         private void Window_KeyDown (object sender, KeyEventArgs e)
@@ -100,16 +103,6 @@ namespace FirstGameWPF
 
             CanvasBoard.Children.Add(redLine);
 
-
-            //if ( speedIndicator != null )
-            //    CanvasBoard.Children.Remove(speedIndicator);
-            //speedIndicator = new Label();
-            //speedIndicator.FontSize = 15;
-            //speedIndicator.FontWeight = FontWeights.Medium;
-            //speedIndicator.Content = CarromHelper.GetSpeedIndicator(redLine);
-            //speedIndicator.Margin = new Thickness(lastPoint.X, lastPoint.Y, 0, 0);
-
-            //CanvasBoard.Children.Add(speedIndicator);
             }
 
         private void GetNextPoint (double x1, double y1, double x2, double y2)
@@ -154,17 +147,68 @@ namespace FirstGameWPF
 
         private void CanvasBoard_OnMouseLeftButtonUp (object sender, MouseButtonEventArgs e)
             {
-            //GetNextPoint(strikerWithDefaultLocation.Margin.Left,
-            //     strikerWithDefaultLocation.Margin.Top, lastPoint.X, lastPoint.Y);
+            startPoint = new Point(strikerWithDefaultLocation.Margin.Left,
+                 strikerWithDefaultLocation.Margin.Top);
+            lastPoint = Mouse.GetPosition(CanvasBoard);
 
-            if ( myEllipseGeometry != null && redLine != null )
+             bw.RunWorkerAsync();
+
+            }
+        void bw_RunWorkerCompleted (object sender, RunWorkerCompletedEventArgs e)
+            {
+            Thread.Sleep(100);
+             CanvasBoard.Children.Remove(strikerWithDefaultLocation);
+            strikerWithDefaultLocation = CarromPieces.CreateDefaultStriker();
+            CanvasBoard.Children.Add(strikerWithDefaultLocation);
+            }
+
+        void bw_ProgressChanged (object sender, ProgressChangedEventArgs e)
+        {
+            string nextXY = e.UserState.ToString();
+            double nextX = Convert.ToDouble(nextXY.Split(',')[0]);
+            double nextY = Convert.ToDouble(nextXY.Split(',')[1]);
+            strikerWithDefaultLocation.Margin = new Thickness()
+            {
+                Left = nextX,
+                Top = nextY,
+                Right = strikerWithDefaultLocation.Margin.Right,
+                Bottom = strikerWithDefaultLocation.Margin.Bottom
+            };
+        }
+
+        void bw_DoWork (object sender, DoWorkEventArgs e)
+            {
+
+            double m = ((lastPoint.Y - startPoint.Y) / (lastPoint.X - startPoint.X));
+            double c = (startPoint.Y - (startPoint.X * m));
+            double moveX = startPoint.X;
+            double moveY = startPoint.Y;
+            if ( lastPoint.X > moveX )
                 {
-                CanvasBoard.Children.Remove(strikerWithDefaultLocation);
-                CanvasBoard.Children.Remove(redLine);
-                Path animatedPath = ExtraControls.AnimateStriker(myEllipseGeometry, redLine);
-                CanvasBoard.Children.Add(animatedPath);
-                }
+                while ( moveX < lastPoint.X )
+                    {
+                    moveX = moveX + 1;
+                    moveY = ((m * moveX) + c);
+                    Thread.Sleep(new TimeSpan(0, 0, 0, 0, 1));
+                    bw.ReportProgress(1, moveX + "," + moveY);
 
+                    if ( moveX > lastPoint.X )
+                        break;
+                    }
+                }
+            else if ( lastPoint.X < moveX )
+                {
+                while ( lastPoint.X < moveX )
+                    {
+                    moveX = moveX - 1;
+                    moveY = ((m * moveX) + c);
+                    Thread.Sleep(new TimeSpan(0, 0, 0, 0, 1));
+                    bw.ReportProgress(1, moveX + "," + moveY);
+
+                    if ( lastPoint.X > moveX )
+                        break;
+                    }
+                }
             }
         }
     }

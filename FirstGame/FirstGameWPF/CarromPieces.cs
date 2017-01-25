@@ -13,8 +13,6 @@ namespace FirstGameWPF
     class CarromPieces
     {
         public static Ellipse striker = null;
-        List<Ellipse> whiteCoins = null;
-        List<Ellipse> blackCoins = null;
 
         /// <summary>
         /// Generate striker at Default location
