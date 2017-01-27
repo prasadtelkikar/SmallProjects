@@ -5,10 +5,11 @@
     <Canvas HorizontalAlignment="Left" Name="CanvasBoard" Height="0" Margin="0,0,0,0" VerticalAlignment="Top" Width="0" MouseLeftButtonDown="CanvasBoard_OnMouseLeftButtonDown" MouseMove="CanvasBoard_OnMouseMove" MouseLeftButtonUp="CanvasBoard_OnMouseLeftButtonUp">
         <Rectangle Fill="#17202A" HorizontalAlignment="Left" Height="550" Stroke="Black" VerticalAlignment="Top" Width="550" MaxWidth="550" MaxHeight="550" Canvas.Left="10" Canvas.Top="12"/>
         <Rectangle Fill="#F5B041" Name="CarromBoard" HorizontalAlignment="Left" Height="500" Stroke="Black" VerticalAlignment="Top" Width="500" Canvas.Left="35" Canvas.Top="39" />
-        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="35" Canvas.Top="39"/>
-        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" RenderTransformOrigin="1.897,0.938" Canvas.Left="35" Canvas.Top="507"/>
-        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="39"/>
-        <Ellipse Fill="#ABB2B9" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="507"/>
+        
+        <Ellipse Fill="#ABB2B9" Name="LeftTopPocket" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="35" Canvas.Top="39"/>
+        <Ellipse Fill="#ABB2B9" Name="LeftBottomPocket" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" RenderTransformOrigin="1.897,0.938" Canvas.Left="35" Canvas.Top="507"/>
+        <Ellipse Fill="#ABB2B9" Name="RightTopPocket" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="39"/>
+        <Ellipse Fill="#ABB2B9" Name="RightBottomPocket" HorizontalAlignment="Left" Height="32" Stroke="Black" VerticalAlignment="Top" Width="29" Canvas.Left="506" Canvas.Top="507"/>
         <Ellipse HorizontalAlignment="Left" Stroke="Black" Fill="#F5B041" StrokeThickness="10" VerticalAlignment="Top" Width="150" Height="150" Canvas.Left="210" Canvas.Top="212"/>
         <Rectangle Fill="#F5B041" Name="LeftSideBar" HorizontalAlignment="Left" Height="375" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="68" Canvas.Top="103"/>
         <Rectangle Fill="#F5B041" Name="RightSideBar" HorizontalAlignment="Left" Height="375" Stroke="Black" VerticalAlignment="Top" Width="23" Canvas.Left="482" Canvas.Top="103"/>
